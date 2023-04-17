@@ -27,31 +27,31 @@
             <th>电话号码</th>
             <th>
               <span>性别</span>
-              <i class="el-icon-arrow-down"></i>
+              <i class="el-icon-arrow-down" @click="sortSex"></i>
             </th>
             <th>身份证号码</th>
             <th class="sort">
               <span>入学时间</span>
-              <i class="el-icon-caret-top" @click="sortTop"></i>
-              <i class="el-icon-caret-bottom" @click="sortBottom"></i>
+              <i class="el-icon-caret-top" @click="sortData('start_date', 'top')"></i>
+              <i class="el-icon-caret-bottom" @click="sortData('start_date', 'bottom')"></i>
             </th>
             <th class="sort">
               <span>毕业时间</span>
-              <i class="el-icon-caret-top"></i>
-              <i class="el-icon-caret-bottom"></i>
+              <i class="el-icon-caret-top" @click="sortData('end_date', 'top')"></i>
+              <i class="el-icon-caret-bottom" @click="sortData('end_date', 'bottom')"></i>
             </th>
           </tr>
         </thead>
         <tbody>
           <template v-if="table_data.length">
             <tr v-for="item in table_data" :key="item.id">
-            <td>{{ item.name }}</td>
-            <td>{{ item.phone }}</td>
-            <td>{{ item.sex | filterSex }}</td>
-            <td>{{ item.id }}</td>
-            <td>{{ item.start_date }}</td>
-            <td>{{ item.end_date }}</td>
-          </tr>
+              <td>{{ item.name }}</td>
+              <td>{{ item.phone }}</td>
+              <td>{{ item.sex | filterSex }}</td>
+              <td>{{ item.id }}</td>
+              <td>{{ item.start_date }}</td>
+              <td>{{ item.end_date }}</td>
+            </tr>
           </template>
           <tr v-else>
             <td colspan="6">暂无数据！</td>
@@ -98,27 +98,22 @@ export default {
     this.table_data_cope = [...this.table_data];
   },
   methods: {
+    // 拷贝数据
     copeData() {
       this.table_data = [...this.table_data_cope];
     },
-    sortTop() {
-      this.table_data = this.table_data.sort((a, b) => a.start_date < b.start_date ? -1 : a.start_date > b.start_date ? 1 : 0)
-    },
-    sortBottom() {
-      this.table_data = this.table_data.sort((a, b) => a.start_date < b.start_date ? 1 : a.start_date > b.start_date ? -1 : 0)
-    },
-
+    // 清除
     reset() {
-      console.log('清除');
       this.name = '';
       this.tel = '';
       this.copeData();
     },
+    // 查询
     search() {
       this.copeData();
       this.table_data = this.table_data.filter(item => {
-        // let nameState = true; //姓名
-        // let telState = true; //电话
+        let nameState = true; //姓名
+        let telState = true; //电话
         if (this.name) {
           const keys = this.name.toUpperCase().replace(/\s+/g, '').split('');
           nameState = keys.every(key => item.name.toUpperCase().includes(key));
@@ -127,9 +122,29 @@ export default {
           const pattern = new RegExp(this.tel);
           telState = pattern.test(item.phone);
         }
+        console.log(nameState, telState);
         return nameState && telState;
       })
-    }
+    },
+    sortSex(){
+      
+    },
+    // 排序
+    sortData(field, sort) {
+      if (field == 'start_date') {
+        if (sort == 'top') {
+          this.table_data = this.table_data.sort((a, b) => a.start_date < b.start_date ? -1 : a.start_date > b.start_date ? 1 : 0);
+        } else {
+          this.table_data = this.table_data.sort((a, b) => a.start_date < b.start_date ? 1 : a.start_date > b.start_date ? -1 : 0);
+        }
+      } else if (field == 'end_date') {
+        if (sort == 'top') {
+          this.table_data = this.table_data.sort((a, b) => a.end_date < b.end_date ? -1 : a.end_date > b.end_date ? 1 : 0);
+        } else {
+          this.table_data = this.table_data.sort((a, b) => a.end_date < b.end_date ? 1 : a.end_date > b.end_date ? -1 : 0);
+        }
+      }
+    },
   },
 }
 </script>
