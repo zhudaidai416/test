@@ -1,0 +1,96 @@
+.navigate {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px;
+  display: flex;
+}
+.navigate > div {
+  margin-right: 50px;
+  cursor: pointer;
+}
+.content {
+  width: 100%;
+  height: 90%;
+  display: flex;
+}
+.content .test-content {
+  width: 100%;
+  border-top: 2px solid #e0e0e0;
+  display: flex;
+}
+.content .test-content > div {
+  height: 100%;
+}
+.content .test-content > div:first-child {
+  width: 40%;
+}
+.content .test-content > div:last-child {
+  width: 60%;
+}
+.content .test-content .request-button {
+  margin: 20px;
+  cursor: pointer;
+}
+.content .test4 > div {
+  width: 50%!important;
+}
+.content .test4 .left-require img {
+  width: 100%;
+}
+.content .tip-content {
+  padding: 50px;
+}
+.content .left-require {
+  border-right: 2px solid #e0e0e0;
+}
+.content .left-require > div {
+  height: 100%;
+  overflow: auto;
+  padding: 20px;
+}
+.content .color-reck {
+  width: 100%;
+  padding: 50px;
+}
+.content .color-reck > div {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+}
+.content .color-reck > h2 {
+  text-indent: 2rem;
+}
+.content .color-reck .blue,
+.content .color-reck .green,
+.content .color-reck .red {
+  width: 200px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  color: #ffffff;
+  font-size: 25px;
+  cursor: pointer;
+}
+.content .color-reck .blue {
+  background-color: blue;
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+.content .color-reck .green {
+  background-color: green;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.content .color-reck .red {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
