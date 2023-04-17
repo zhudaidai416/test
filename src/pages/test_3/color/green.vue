@@ -1,7 +1,7 @@
 <template>
-  <div class="green">
-    <span>{{ num }}</span>
-    <red></red>
+  <div class="green" @click.stop="$emit('clickGreen')">
+    <span>{{ parseInt(green_num) }}</span>
+    <red :red_num="red_num" @clickRed="clickRed"></red>
   </div>
 </template>
 
@@ -12,11 +12,17 @@ export default {
   components: {
     red
   },
+  props: ['green_num', 'red_num'],
   data() {
     return {
-      num: 0
+
     }
-  }
+  },
+  methods: {
+    clickRed() {
+      this.$emit('clickRed');
+    }
+  },
 }
 </script>
 
